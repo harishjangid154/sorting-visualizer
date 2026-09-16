@@ -1,6 +1,11 @@
 (function () {
-  const { categories, algorithms } = window.VisualizerCatalog;
+  const catalog = window.VisualizerCatalog;
   const runners = window.VisualizerAlgorithms;
+  if (!catalog || !runners) {
+    document.getElementById("stat-status").textContent = "Scripts failed to load";
+    return;
+  }
+  const { categories, algorithms } = catalog;
 
   const SPEED_LABELS = [
     [20, "Slow"],
@@ -269,6 +274,9 @@
     algoGrid.querySelectorAll("button").forEach((btn) => {
       btn.disabled = running;
     });
+    catalogEl.querySelectorAll("button").forEach((btn) => {
+      btn.disabled = running;
+    });
     pauseBtn.disabled = !running;
     stopBtn.disabled = !running;
   }
@@ -367,7 +375,13 @@
         const items = algorithms.filter((algo) => algo.category === category.id);
         if (!items.length) return "";
         const chips = items
-          .map((algo) => `<span class="chip ${algo.status}">${algo.short}</span>`)
+          .map((algo) => {
+            const active = algo.id === state.algo ? " is-active" : "";
+            if (algo.status === "ready") {
+              return `<button type="button" class="chip ready${active}" data-algo="${algo.id}">${algo.short}</button>`;
+            }
+            return `<span class="chip planned">${algo.short}</span>`;
+          })
           .join("");
         return `<div class="catalog-group"><strong>${category.name}</strong><div class="chip-row">${chips}</div></div>`;
       })
@@ -400,6 +414,7 @@
     renderCategories();
     renderAlgoButtons();
     renderLegend();
+    renderCatalog();
     updateCard();
     generateArray();
   }
@@ -409,12 +424,18 @@
     if (!meta || meta.status !== "ready") return;
     state.algo = algoId;
     state.category = meta.category;
+    renderCategories();
     renderAlgoButtons();
+    renderLegend();
+    renderCatalog();
     updateCard();
     generateArray();
   }
 
-  generateBtn.addEventListener("click", generateArray);
+  catalogEl.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-algo]");
+    if (button) selectAlgo(button.dataset.algo);
+  });
   runBtn.addEventListener("click", runAlgo);
   pauseBtn.addEventListener("click", () => {
     if (!state.running) return;

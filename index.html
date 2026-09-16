@@ -8,9 +8,9 @@
       name="description"
       content="Interactive visualizer for sorting, searching, array, and math algorithms."
     />
-    <link rel="icon" href="./harish.jpg" />
-    <link rel="apple-touch-icon" href="./logo192.png" />
-    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="/sorting-visualizer/harish.jpg" />
+    <link rel="apple-touch-icon" href="/sorting-visualizer/logo192.png" />
+    <link rel="manifest" href="/sorting-visualizer/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,13 +18,13 @@
       rel="stylesheet"
     />
     <title>Algorithm Visualizer</title>
-    <link rel="stylesheet" href="./css/app.css" />
+    <link rel="stylesheet" href="/sorting-visualizer/css/app.css" />
   </head>
   <body>
     <div class="app">
       <header class="topbar">
         <div class="brand">
-          <img class="brand-mark" src="./harish.jpg" alt="" />
+          <img class="brand-mark" src="/sorting-visualizer/harish.jpg" alt="" />
           <div>
             <p class="eyebrow">Algorithm lab</p>
             <h1>Algorithm Visualizer</h1>
@@ -35,10 +35,6 @@
 
       <aside class="panel" aria-label="Visualizer controls">
         <section>
-          <h2>Family</h2>
-          <div class="category-tabs" id="category-tabs" role="tablist" aria-label="Algorithm family"></div>
-          <h2>Algorithm</h2>
-          <div class="algo-grid" id="algo-grid" role="radiogroup" aria-label="Algorithm"></div>
           <article class="algo-card" id="algo-card">
             <h3 id="algo-name">Bubble Sort</h3>
             <p id="algo-blurb">
@@ -98,13 +94,38 @@
           <ul class="legend" id="legend"></ul>
         </section>
 
-        <details class="catalog">
-          <summary>Full catalog</summary>
-          <div id="catalog"></div>
-        </details>
+        <section class="catalog-section">
+          <h2>Catalog</h2>
+          <p class="catalog-hint">Bright chips are runnable. Faded chips are planned for a later canvas.</p>
+          <div id="catalog" class="catalog"></div>
+        </section>
       </aside>
 
       <main class="stage">
+        <div class="picker">
+          <div class="picker-row">
+            <span class="picker-label">Family</span>
+            <div class="category-tabs" id="category-tabs" role="tablist" aria-label="Algorithm family">
+              <button type="button" data-category="sorting" class="is-active">Sorting</button>
+              <button type="button" data-category="searching">Searching</button>
+              <button type="button" data-category="array">Array</button>
+              <button type="button" data-category="math">Math</button>
+            </div>
+          </div>
+          <div class="picker-row">
+            <span class="picker-label">Algorithm</span>
+            <div class="algo-grid" id="algo-grid" role="radiogroup" aria-label="Algorithm">
+              <button class="algo-btn is-active" type="button" data-algo="bubble">Bubble</button>
+              <button class="algo-btn" type="button" data-algo="insertion">Insertion</button>
+              <button class="algo-btn" type="button" data-algo="selection">Selection</button>
+              <button class="algo-btn" type="button" data-algo="merge">Merge</button>
+              <button class="algo-btn" type="button" data-algo="quick">Quick</button>
+              <button class="algo-btn" type="button" data-algo="heap">Heap</button>
+              <button class="algo-btn" type="button" data-algo="shell">Shell</button>
+              <button class="algo-btn" type="button" data-algo="cocktail">Cocktail</button>
+            </div>
+          </div>
+        </div>
         <div class="stats" aria-live="polite">
           <div class="stat">
             <span>Comparisons</span>
@@ -129,7 +150,7 @@
         <div id="bars" class="bars" role="img" aria-label="Array bars"></div>
       </main>
     </div>
-    <script src="./js/algorithms.js"></script>
-    <script src="./js/app.js"></script>
+    <script src="/sorting-visualizer/js/algorithms.js"></script>
+    <script src="/sorting-visualizer/js/app.js"></script>
   </body>
 </html>
