@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0b1220" />
     <meta
       name="description"
-      content="Interactive sorting visualizer for bubble, insertion, selection, merge, quick, and heap sort."
+      content="Interactive visualizer for sorting, searching, array, and math algorithms."
     />
     <link rel="icon" href="./harish.jpg" />
     <link rel="apple-touch-icon" href="./logo192.png" />
@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <title>Sorting Visualizer</title>
+    <title>Algorithm Visualizer</title>
     <link rel="stylesheet" href="./css/app.css" />
   </head>
   <body>
@@ -27,29 +27,18 @@
           <img class="brand-mark" src="./harish.jpg" alt="" />
           <div>
             <p class="eyebrow">Algorithm lab</p>
-            <h1>Sorting Visualizer</h1>
+            <h1>Algorithm Visualizer</h1>
           </div>
         </div>
-        <p class="tagline">Watch comparisons, swaps, and writes as each algorithm orders the array.</p>
+        <p class="tagline" id="tagline">Watch comparisons, swaps, and writes as each algorithm orders the array.</p>
       </header>
 
       <aside class="panel" aria-label="Visualizer controls">
         <section>
+          <h2>Family</h2>
+          <div class="category-tabs" id="category-tabs" role="tablist" aria-label="Algorithm family"></div>
           <h2>Algorithm</h2>
-          <div class="algo-grid" role="radiogroup" aria-label="Sorting algorithm">
-            <button class="algo-btn is-active" type="button" data-algo="bubble" aria-pressed="true">
-              Bubble
-            </button>
-            <button class="algo-btn" type="button" data-algo="insertion" aria-pressed="false">
-              Insertion
-            </button>
-            <button class="algo-btn" type="button" data-algo="selection" aria-pressed="false">
-              Selection
-            </button>
-            <button class="algo-btn" type="button" data-algo="merge" aria-pressed="false">Merge</button>
-            <button class="algo-btn" type="button" data-algo="quick" aria-pressed="false">Quick</button>
-            <button class="algo-btn" type="button" data-algo="heap" aria-pressed="false">Heap</button>
-          </div>
+          <div class="algo-grid" id="algo-grid" role="radiogroup" aria-label="Algorithm"></div>
           <article class="algo-card" id="algo-card">
             <h3 id="algo-name">Bubble Sort</h3>
             <p id="algo-blurb">
@@ -92,6 +81,9 @@
             </span>
             <input id="speed-slider" type="range" min="1" max="100" value="72" />
           </label>
+          <p id="target-row" class="target-row" hidden>
+            Target <strong id="target-value">—</strong>
+          </p>
         </section>
 
         <section class="actions">
@@ -103,14 +95,13 @@
 
         <section>
           <h2>Legend</h2>
-          <ul class="legend">
-            <li><span class="swatch default"></span> Unsorted</li>
-            <li><span class="swatch compare"></span> Comparing</li>
-            <li><span class="swatch write"></span> Writing</li>
-            <li><span class="swatch pivot"></span> Pivot</li>
-            <li><span class="swatch sorted"></span> Sorted</li>
-          </ul>
+          <ul class="legend" id="legend"></ul>
         </section>
+
+        <details class="catalog">
+          <summary>Full catalog</summary>
+          <div id="catalog"></div>
+        </details>
       </aside>
 
       <main class="stage">
