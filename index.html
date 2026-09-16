@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0b1220" />
     <meta
       name="description"
-      content="Interactive visualizer for sorting, searching, array, and math algorithms."
+      content="Interactive visualizer for sorting, searching, graphs, trees, DP, and backtracking."
     />
     <link rel="icon" href="/sorting-visualizer/harish.jpg" />
     <link rel="apple-touch-icon" href="/sorting-visualizer/logo192.png" />
@@ -65,10 +65,10 @@
           <h2>Array</h2>
           <label class="slider-field">
             <span>
-              Size
-              <strong id="size-value">40</strong>
+              <span id="size-label">Size</span>
+              <strong id="size-value">32</strong>
             </span>
-            <input id="size-slider" type="range" min="8" max="120" value="40" />
+            <input id="size-slider" type="range" min="8" max="80" value="32" />
           </label>
           <label class="slider-field">
             <span>
@@ -95,8 +95,7 @@
         </section>
 
         <section class="catalog-section">
-          <h2>Catalog</h2>
-          <p class="catalog-hint">Bright chips are runnable. Faded chips are planned for a later canvas.</p>
+          <h2>All algorithms</h2>
           <div id="catalog" class="catalog"></div>
         </section>
       </aside>
@@ -105,25 +104,11 @@
         <div class="picker">
           <div class="picker-row">
             <span class="picker-label">Family</span>
-            <div class="category-tabs" id="category-tabs" role="tablist" aria-label="Algorithm family">
-              <button type="button" data-category="sorting" class="is-active">Sorting</button>
-              <button type="button" data-category="searching">Searching</button>
-              <button type="button" data-category="array">Array</button>
-              <button type="button" data-category="math">Math</button>
-            </div>
+            <div class="chip-row family-tabs" id="category-tabs" role="tablist" aria-label="Algorithm family"></div>
           </div>
           <div class="picker-row">
             <span class="picker-label">Algorithm</span>
-            <div class="algo-grid" id="algo-grid" role="radiogroup" aria-label="Algorithm">
-              <button class="algo-btn is-active" type="button" data-algo="bubble">Bubble</button>
-              <button class="algo-btn" type="button" data-algo="insertion">Insertion</button>
-              <button class="algo-btn" type="button" data-algo="selection">Selection</button>
-              <button class="algo-btn" type="button" data-algo="merge">Merge</button>
-              <button class="algo-btn" type="button" data-algo="quick">Quick</button>
-              <button class="algo-btn" type="button" data-algo="heap">Heap</button>
-              <button class="algo-btn" type="button" data-algo="shell">Shell</button>
-              <button class="algo-btn" type="button" data-algo="cocktail">Cocktail</button>
-            </div>
+            <div class="chip-row algo-chips" id="algo-grid" role="radiogroup" aria-label="Algorithm"></div>
           </div>
         </div>
         <div class="stats" aria-live="polite">
@@ -147,10 +132,17 @@
         <div class="progress" aria-hidden="true">
           <div id="progress-bar" class="progress-bar"></div>
         </div>
-        <div id="bars" class="bars" role="img" aria-label="Array bars"></div>
+        <div class="viz">
+          <div id="bars" class="bars" role="img" aria-label="Array bars"></div>
+          <div id="grid-view" class="grid-view" hidden></div>
+          <div id="tree-view" class="tree-view" hidden></div>
+          <div id="table-view" class="table-view" hidden></div>
+          <div id="board-view" class="board-view" hidden></div>
+        </div>
       </main>
     </div>
     <script src="/sorting-visualizer/js/algorithms.js"></script>
+    <script src="/sorting-visualizer/js/extra.js"></script>
     <script src="/sorting-visualizer/js/app.js"></script>
   </body>
 </html>
